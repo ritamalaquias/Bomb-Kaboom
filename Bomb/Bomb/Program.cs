@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Bomb
 {
@@ -6,12 +7,15 @@ namespace Bomb
     {
         static string previouslyPressed;
         static string userInput;
+        static char[] validInputs = new char[] { 'W', 'R', 'B', 'O', 'G', 'P' };
+
         static void Main(string[] args)
         {
             Console.WriteLine
                 ("Disarm the bomb! You need to cut the wires in order to disarm the bomb\nWires: \nWhite [W], Black [B], Red [R], Green[G], Orange[O], Purple[P]");
 
-            previouslyPressed = Console.ReadLine().ToUpper();
+            InputAndValidation();
+            previouslyPressed = userInput;
 
             int wiresToCut = 5;
             int wiresCut = 1;
@@ -24,15 +28,15 @@ namespace Bomb
                 wiresCut++;
             }
             if(exploded == true)
-                Console.WriteLine("you did the poopoo");
+                Console.WriteLine("KABOOM!\nThe bomb exploded.");
+            
             else
                 Console.WriteLine("You do it");
-            
         }
 
         static bool NextToCut()
         {
-            userInput = Console.ReadLine().ToUpper();
+            InputAndValidation();
             switch (previouslyPressed)
             {
                 case "W":
@@ -48,7 +52,6 @@ namespace Bomb
                 case "P":
                     return CutPurple();
                 default:
-                    Console.WriteLine("Not a valid wire");
                     return false;
             }
 
@@ -97,6 +100,17 @@ namespace Bomb
                 return true;
             else
                 return false;
+        }
+
+        static void InputAndValidation()
+        {
+            do
+            {
+                userInput = Console.ReadLine().ToUpper();
+                Console.WriteLine("Not a valid wire");
+            }
+            while (userInput.Length != 1 || validInputs.Contains(userInput[0]) == false);
+
         }
     }
 }
