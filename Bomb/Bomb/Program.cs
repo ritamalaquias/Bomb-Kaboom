@@ -11,7 +11,7 @@ namespace Bomb
             Console.WriteLine
                 ("Disarm the bomb! You need to cut the wires in order to disarm the bomb\nWires: \nWhite [W], Black [B], Red [R], Green[G], Orange[O], Purple[P]");
 
-            previouslyPressed = Console.ReadLine();
+            previouslyPressed = Console.ReadLine().ToUpper();
 
             int wiresToCut = 5;
             int wiresCut = 1;
@@ -32,7 +32,7 @@ namespace Bomb
 
         static bool NextToCut()
         {
-            userInput = Console.ReadLine();
+            userInput = Console.ReadLine().ToUpper();
             switch (previouslyPressed)
             {
                 case "W":
