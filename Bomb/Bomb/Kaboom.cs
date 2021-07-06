@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Bomb
 {
-    class Program
+    class Kaboom
     {
         static string previouslyPressed;
         static string userInput;
