@@ -11,6 +11,16 @@ namespace Bomb
 
         static void Main(string[] args)
         {
+            do
+            {
+                Game();
+                Console.WriteLine("Play again? Yes[Y], No[N]");
+            }
+            while (Console.ReadLine().ToUpper() == "Y");
+        }
+
+        static void Game()
+        {
             Console.WriteLine
                 ("Disarm the bomb! You need to cut the wires in order to disarm the bomb\nWires: \nWhite [W], Black [B], Red [R], Green[G], Orange[O], Purple[P]");
 
@@ -27,13 +37,12 @@ namespace Bomb
                 previouslyPressed = userInput;
                 wiresCut++;
             }
-            if(exploded == true)
+            if (exploded == true)
                 Console.WriteLine("KABOOM!\nThe bomb exploded.");
-            
+
             else
                 Console.WriteLine("You do it");
         }
-
         static bool NextToCut()
         {
             InputAndValidation();
@@ -104,13 +113,13 @@ namespace Bomb
 
         static void InputAndValidation()
         {
-            do
-            {
-                userInput = Console.ReadLine().ToUpper();
+            userInput = Console.ReadLine().ToUpper();    
+            while (userInput.Length != 1 || validInputs.Contains(userInput[0]) == false)
+            {   
                 Console.WriteLine("Not a valid wire");
-            }
-            while (userInput.Length != 1 || validInputs.Contains(userInput[0]) == false);
+                userInput = Console.ReadLine().ToUpper();
 
+            }
         }
     }
 }
